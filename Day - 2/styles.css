@@ -1,0 +1,168 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background: rgb(29, 53, 87);
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+    height: 100vh;
+}
+
+.title {
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Times New Roman', Times, serif;
+    background-color: black;
+    color: rgb(241, 250, 238);
+    margin: 2.5% 2.5%;
+    border-radius: 5px;
+    max-height: 15%;
+}
+
+.main-content {
+    min-height: 50%;
+    margin: 2.5% 2.5%;
+}
+
+div.container {
+    background-color: rgb(168, 218, 220);
+    border-radius: 8px;
+    height: 100%;
+    padding: 5% 2.5%;
+}
+
+.log {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    height: 95%;
+}
+
+.ip1,
+.ip2,
+.ip3 {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 80%;
+    height: 100%;
+}
+
+.container label {
+    width: 40%;
+    height: 70%;
+    text-align: left;
+    margin: 0;
+    font-size: x-large;
+}
+
+.container input[type=text],
+.container input[type=email] {
+    width: 70%;
+    height: 100%;
+    border-radius: 6px;
+    font-size: large;
+}
+
+input[type=submit] {
+    font-size: x-large;
+    align-self: right;
+    height: 45  px;
+    width: 120px;
+    margin-top: 15px;
+    border: 2px solid black;
+    border-radius: 4px;
+    background-color: rgb(230, 57, 70);
+    color: black;
+
+}
+
+
+footer {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: x-large;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: fit-content;
+    margin: 0% 2.5% 5%;
+    color: rgb(241, 250, 238);
+    background-color: black;
+    border-radius: 5px;
+    max-height: 15%;
+    margin-bottom: 2.5%;
+}
+
+@media screen and (max-width:425px) {
+    .main-content {
+        height: 60%;
+    }
+
+    .title {
+        margin-top: 5%;
+        font-size: x-small;
+    }
+
+    footer {
+        margin-top: 5%;
+        position: relative;
+        margin-bottom: 2.5%;
+        width: 95%;
+        font-size: medium;
+    }
+
+    .log {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        align-items: center;
+        justify-content: center;
+        margin: 30px 5px;
+    }
+
+    .ip1,
+    .ip2,
+    .ip3 {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+    }
+
+    .container {
+        margin: 10% 5%;
+        padding: 10px;
+        height: auto;
+        width: 90%;
+        background-color: rgb(168, 218, 220);
+        height: 80%;
+    }
+
+    .container label {
+        font-size: medium;
+        margin-bottom: 5px;
+        margin-left: 10%;
+    }
+
+    .container input[type="text"],
+    .container input[type="email"] {
+        height: 30px;
+        width: 80%;
+        margin: 0 auto;
+        display: block;
+    }
+
+    .container input[type="submit"] {
+        align-self: center;
+        font-size: small;
+        height: 35px;
+        width: 90px;
+        margin-top: 0px;
+    }
+}
