@@ -2,12 +2,16 @@ import MovieCard from '../components/MovieCard'
 import { useState, useEffect } from 'react';
 import { searchMovies, getPopularMovies } from '../services/api';
 import "../css/Home.css"
+import { useNavigate } from 'react-router-dom'; 
 
 function Home() {
     const [searchQuery, setSearchQuery] = useState("")
     const [movies, setMovies] = useState([]);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true)
+
+    const navigate = useNavigate();
+
 
     useEffect(() => {
         const loadPopularMovies = async () => {
@@ -27,13 +31,34 @@ function Home() {
     }, [])
     
 
-    const handleSearch = (e) => {
+    const handleSearch = async (e) => {
         e.preventDefault()
-        alert(searchQuery)
+        
+        if (!searchQuery.trim()) return
+        if (loading) return
+
+        setLoading(true)
+        try{
+            const searchResults = await searchMovies(searchQuery)
+            setMovies(searchResults)
+            setError(null )
+        }catch (err) {
+            console.log(err)
+            setError("Failed to search movies...")
+        }finally {
+            setLoading(false)
+        }
+
+
         setSearchQuery("")
     }
-
+/* 
+    function handleSubmit(){
+        navigate("/favourites")
+    }
+*/
     return (
+        
         <div className="home flex flex-col align-middle items-center mt-12">
             <form onSubmit={handleSearch} className='search-input'>
                 <input type='text' placeholder='Search for movies ....' className='search-input' value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} />
