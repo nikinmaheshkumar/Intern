@@ -21,9 +21,7 @@ function ProductCard({ product }) {
         <button className="px-4 py-2 bg-[#190028] text-white rounded-lg text-sm font-medium " onClick={() => navigate(`/product/${product.id}`)}>
           More Details
         </button>
-        <button className="px-4 py-2 bg-[#190028] text-white rounded-lg text-sm font-medium ">
-          Add to Cart
-        </button>
+       
       </div>
     </div>
   );
