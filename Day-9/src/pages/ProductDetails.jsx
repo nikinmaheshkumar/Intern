@@ -44,7 +44,7 @@ function ProductDetails({addToCart}) {
     className="px-6 py-2 bg-[#190028] text-white rounded-lg text-sm font-medium transition hover:bg-[#300048]"
     onClick={() => addToCart(product)}
   >
-    Add to Cart
+    ➕ Add to Cart
   </button>
 </div>
 

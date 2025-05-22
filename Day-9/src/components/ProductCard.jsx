@@ -19,7 +19,7 @@ function ProductCard({ product }) {
       <p className="text-md font-semibold mt-3 text-black text-center">${product.price}</p>
       <div className="mt-auto pt-4 flex justify-center space-x-3">
         <button className="px-4 py-2 bg-[#190028] text-white rounded-lg text-sm font-medium " onClick={() => navigate(`/product/${product.id}`)}>
-          More Details
+          ℹ️  More Details
         </button>
        
       </div>

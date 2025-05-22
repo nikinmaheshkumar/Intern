@@ -15,13 +15,16 @@ function App() {
     setCart((prevCart) => [...prevCart,product]);
   };
 
+  const removeFromCart = (id) => {
+    setCart((prevCart) => prevCart.filter(item => item.id !== id));
+  }
   return (
     <>
       <Routes>
                 <Route path='/' element={<Home />} />
                 <Route path='/products' element={<Products />} />
                 <Route path='/product/:id' element={<ProductDetails addToCart={addToCart}/>} />
-                <Route path='/cart' element={<Cart cart={cart}/>} />
+                <Route path='/cart' element={<Cart cart={cart} removeFromCart={removeFromCart}/>} />
                 <Route path='*' element={<NotFound />} />
             </Routes>
     </>
