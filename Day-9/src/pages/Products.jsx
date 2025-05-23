@@ -1,4 +1,3 @@
-import Navbar from '../components/Navbar'
 import { useState, useEffect } from 'react';
 import axios from 'axios'
 import Loading from '../components/Loading';
@@ -23,7 +22,6 @@ function Products() {
 
   return (
     <>
-      <Navbar />
       <div className="p-4">
       <h1 className="text-3xl mb-4 text-center font-semibold">All Products</h1>
       {loading ? (

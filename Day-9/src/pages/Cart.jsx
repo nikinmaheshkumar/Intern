@@ -1,9 +1,6 @@
-import Navbar from "../components/Navbar";
-
 function Cart({ cart, removeFromCart }) {
   return (
     <>
-      <Navbar />
       <h1 className="text-2xl p-4 text-center">Your Cart 🛒</h1>
       {console.log("Cart contents:", cart)}
       {cart.length === 0 ? (

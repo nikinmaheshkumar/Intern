@@ -1,10 +1,8 @@
-import Navbar from '../components/Navbar'
 import '../styles/index.css'
 
 function Home() {
     return (
         <>
-        <Navbar />
             <div className="mt-10 hero bg-base-200 min-h-screen">
                 <div className="hero-content text-center">
                     <div className="max-w-screen">

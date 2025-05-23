@@ -10,6 +10,7 @@ function Navbar() {
             <button onClick={() => navigate('/')} className='hover:underline font-semibold'>Home</button>
             <button onClick={() => navigate('/products')} className='hover:underline font-semibold'>Products</button>
             <button onClick={() => navigate('/cart')} className='hover:underline font-semibold'>Cart</button>
+            <button onClick={() => navigate('/contact')} className='hover:underline font-semibold'>Contact</button>
         </nav>
     );
 }
