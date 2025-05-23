@@ -20,8 +20,15 @@ const Details = () => {
 
 
     const handleDelete = (id) => {
-        setUsers(users.filter(user => user.id !== id));
-    };
+  axios.delete(`https://6830120df504aa3c70f62bde.mockapi.io/user/details/${id}`)
+    .then(() => {
+      setUsers((prevUsers) => prevUsers.filter(user => user.id !== id));
+    })
+    .catch((error) => {
+      console.error("Failed to delete user", error);
+    });
+};
+
 
     const handleEdit = (id) => {
         alert(`Edit user with ID ${id}`);
@@ -31,16 +38,16 @@ const Details = () => {
         <div className="min-h-screen bg-gradient-to-br from-slate-50 to-gray-100 py-12 px-4">
             <div className="max-w-7xl mx-auto">
                 <div className="text-center mb-8">
-                    <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-full mb-4 shadow-lg">
+                    <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-[#220135] to-black rounded-full mb-4 shadow-lg">
                         <FaUser className="text-white text-xl" />
                     </div>
-                    <h1 className="text-4xl font-bold bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent mb-2">
+                    <h1 className="text-4xl font-bold bg-gradient-to-br from-[#220135] to-black bg-clip-text text-transparent mb-2">
                         User Management
                     </h1>
                     <p className="text-gray-600 text-lg">Manage your users with ease</p>
                 </div>
                 <div className="bg-white rounded-2xl shadow-xl overflow-hidden backdrop-blur-sm border border-gray-100">
-                    <div className="bg-gradient-to-r from-purple-600 to-indigo-600 px-8 py-6">
+                    <div className="bg-gradient-to-br from-[#220135] to-black px-8 py-6">
                         <div className="flex items-center justify-between">
                             <h2 className="text-2xl font-semibold text-white">Active Users</h2>
                             <div className="bg-white/20 px-4 py-2 rounded-full">

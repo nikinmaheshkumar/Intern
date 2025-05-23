@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 function Forms() {
     const navigate = useNavigate();
@@ -9,7 +10,6 @@ function Forms() {
         email: '',
         phone: '',
     });
-
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData((prevData) => ({
@@ -17,15 +17,27 @@ function Forms() {
             [name]: value,
         }));
     };
-
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log('Form Data:', formData);
+        axios.post("https://6830120df504aa3c70f62bde.mockapi.io/user/details", formData)
+            .then((resp) => {
+                console.log(resp)
+                setFormData({
+                    fname: '',
+                    lname: '',
+                    email: '',
+                    phone: '',
+                });
+                alert("Form Submitted");
+            })
+            .catch((err) => {
+                console.error(err);
+            })
+        e.target.reset();
     };
-
     return (
         <div className="min-h-screen flex flex-col items-center justify-center bg-white px-4">
-            {/* Details Button Outside the Form */}
             <div className="w-full max-w-md flex justify-end mb-2">
                 <button
                     onClick={() => navigate('/contact/details')}
@@ -34,8 +46,6 @@ function Forms() {
                     <span className="text-xl">ℹ️</span> Details
                 </button>
             </div>
-
-            {/* Form */}
             <form
                 onSubmit={handleSubmit}
                 className="w-full max-w-md rounded-xl shadow-lg p-8 bg-gradient-to-br from-[#220135] to-black text-white space-y-6"
@@ -50,7 +60,7 @@ function Forms() {
                         type="text"
                         id="fname"
                         name="fname"
-                        className="w-full border border-gray-300 rounded-md px-4 py-2 text-black focus:outline-none focus:ring-2 focus:ring-purple-500"
+                        className="w-full border border-gray-300 rounded-md px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
                         value={formData.fname}
                         onChange={handleChange}
                         required
@@ -65,7 +75,7 @@ function Forms() {
                         type="text"
                         id="lname"
                         name="lname"
-                        className="w-full border border-gray-300 rounded-md px-4 py-2 text-black focus:outline-none focus:ring-2 focus:ring-purple-500"
+                        className="w-full border border-gray-300 rounded-md px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
                         value={formData.lname}
                         onChange={handleChange}
                         required
@@ -80,7 +90,7 @@ function Forms() {
                         type="email"
                         id="email"
                         name="email"
-                        className="w-full border border-gray-300 rounded-md px-4 py-2 text-black focus:outline-none focus:ring-2 focus:ring-purple-500"
+                        className="w-full border border-gray-300 rounded-md px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
                         value={formData.email}
                         onChange={handleChange}
                         required
@@ -98,7 +108,7 @@ function Forms() {
                         maxLength="10"
                         pattern="\d{10}"
                         title="Enter a 10-digit phone number"
-                        className="w-full border border-gray-300 rounded-md px-4 py-2 text-black focus:outline-none focus:ring-2 focus:ring-purple-500"
+                        className="w-full border border-gray-300 rounded-md px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
                         value={formData.phone}
                         onChange={handleChange}
                         required
