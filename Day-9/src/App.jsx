@@ -8,6 +8,7 @@ import NotFound from './pages/NotFound';
 import { useState } from 'react';
 import Contact from './pages/Contact';
 import Layout from './components/Layout';
+import Details from './pages/Details'
 
 function App() {
 
@@ -29,6 +30,7 @@ function App() {
           <Route path='/product/:id' element={<ProductDetails addToCart={addToCart} />} />
           <Route path='/cart' element={<Cart cart={cart} removeFromCart={removeFromCart} />} />
           <Route path='/contact' element={<Contact />} />
+          <Route path='/contact/details' element={<Details />} />
           <Route path='*' element={<NotFound />} />
         </Routes>
       </Layout>
