@@ -9,6 +9,7 @@ import { useState } from 'react';
 import Contact from './pages/Contact';
 import Layout from './components/Layout';
 import Details from './pages/Details'
+import EditForm from './pages/EditForm';
 
 function App() {
 
@@ -31,6 +32,7 @@ function App() {
           <Route path='/cart' element={<Cart cart={cart} removeFromCart={removeFromCart} />} />
           <Route path='/contact' element={<Contact />} />
           <Route path='/contact/details' element={<Details />} />
+          <Route path='/editform/:id' element={<EditForm />} />
           <Route path='*' element={<NotFound />} />
         </Routes>
       </Layout>

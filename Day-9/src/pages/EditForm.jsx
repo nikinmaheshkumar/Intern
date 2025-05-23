@@ -1,11 +1,12 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import { toast, ToastContainer } from 'react-toastify';
+import { useState, useEffect } from "react"
+import { useNavigate, useParams } from "react-router-dom";
+import axios from "axios";
+import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+function EditForm() {
 
-function Forms() {
+    const { id } = useParams();
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
         fname: '',
@@ -13,6 +14,17 @@ function Forms() {
         email: '',
         phone: '',
     });
+
+    useEffect(() => {
+        axios.get(`https://6830120df504aa3c70f62bde.mockapi.io/user/details/${id}`)
+            .then((response) => {
+                setFormData(response.data);
+            })
+            .catch((error) => {
+                console.error("Failed to get users ", error);
+            })
+    }, [id])
+
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData((prevData) => ({
@@ -22,40 +34,28 @@ function Forms() {
     };
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log('Form Data:', formData);
-        axios.post("https://6830120df504aa3c70f62bde.mockapi.io/user/details", formData)
-            .then((resp) => {
-                console.log(resp)
-                setFormData({
-                    fname: '',
-                    lname: '',
-                    email: '',
-                    phone: '',
-                });
-                toast.success('User Added!', {
+        console.log('Updated Form Data:', formData);
+        axios.put(`https://6830120df504aa3c70f62bde.mockapi.io/user/details/${id}`, formData)
+            .then(() => {
+                toast.success('User Updated!', {
                     position: 'top-center',
                 });
+                setTimeout(() => {
+                    navigate('/contact/details');
+                }, 5500)
             })
             .catch((err) => {
-                console.error(err);
+                console.error("Error Updateing", err);
             })
-        e.target.reset();
+
     };
     return (
-        <div className="min-h-screen flex flex-col items-center justify-center bg-white px-4">
-            <div className="w-full max-w-md flex justify-end mb-2">
-                <button
-                    onClick={() => navigate('/contact/details')}
-                    className="flex items-center gap-2 bg-white text-[#220135] border border-purple-900 font-bold border-2 px-6 py-3 text-lg rounded-md hover:bg-purple-100 transition shadow-md"
-                >
-                    <span className="text-xl">ℹ️</span> Details
-                </button>
-            </div>
+        <div className="flex flex-col my-20 items-center">
             <form
                 onSubmit={handleSubmit}
-                className="w-full max-w-md rounded-xl shadow-lg p-8 bg-gradient-to-br from-[#220135] to-black text-white space-y-6"
+                className="w-full max-w-md rounded-xl shadow-lg p-8 bg-gradient-to-br from-[#220135] to-black text-white space-y-6 justify-self-center" autoComplete="off"
             >
-                <h2 className="text-2xl font-bold text-center">Contact Us</h2>
+                <h2 className="text-2xl font-bold text-center">Update Details</h2>
 
                 <div>
                     <label htmlFor="fname" className="block mb-1 font-medium">
@@ -69,6 +69,7 @@ function Forms() {
                         value={formData.fname}
                         onChange={handleChange}
                         required
+                        autoComplete="off"
                     />
                 </div>
 
@@ -84,6 +85,7 @@ function Forms() {
                         value={formData.lname}
                         onChange={handleChange}
                         required
+                        autoComplete="off"
                     />
                 </div>
 
@@ -99,6 +101,7 @@ function Forms() {
                         value={formData.email}
                         onChange={handleChange}
                         required
+                        autoComplete="off"
                     />
                 </div>
 
@@ -117,6 +120,7 @@ function Forms() {
                         value={formData.phone}
                         onChange={handleChange}
                         required
+                        autoComplete="off"
                     />
                 </div>
 
@@ -124,7 +128,7 @@ function Forms() {
                     type="submit"
                     className="w-full bg-white text-[#220135] font-semibold py-2 rounded-md hover:bg-purple-100 transition"
                 >
-                    Submit
+                    Update
                 </button>
                 <ToastContainer />
             </form>
@@ -132,4 +136,5 @@ function Forms() {
     );
 }
 
-export default Forms;
+
+export default EditForm;

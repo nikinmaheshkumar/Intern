@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react';
 import { FaTrash, FaEdit, FaUser } from 'react-icons/fa';
 import axios from "axios"
+import { useNavigate } from 'react-router-dom';
 
 const Details = () => {
     const [users, setUsers] = useState([]);
     const [loading, setLoading] = useState(true);
+    const navigate = useNavigate();
 
     useEffect(() => {
         axios.get("https://6830120df504aa3c70f62bde.mockapi.io/user/details")
@@ -31,7 +33,7 @@ const Details = () => {
 
 
     const handleEdit = (id) => {
-        alert(`Edit user with ID ${id}`);
+        navigate(`/editform/${id}`);
     };
 
     return (
