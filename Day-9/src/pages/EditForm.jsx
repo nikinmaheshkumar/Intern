@@ -65,6 +65,7 @@ function EditForm() {
                         type="text"
                         id="fname"
                         name="fname"
+                        pattern="^[A-Za-z]+$"
                         className="w-full border border-gray-300 rounded-md px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
                         value={formData.fname}
                         onChange={handleChange}
@@ -81,6 +82,7 @@ function EditForm() {
                         type="text"
                         id="lname"
                         name="lname"
+                        pattern="^[A-Za-z]+$"
                         className="w-full border border-gray-300 rounded-md px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
                         value={formData.lname}
                         onChange={handleChange}
@@ -114,7 +116,7 @@ function EditForm() {
                         id="phone"
                         name="phone"
                         maxLength="10"
-                        pattern="\d{10}"
+                        pattern="\d[6-9][0-9]{9}"
                         title="Enter a 10-digit phone number"
                         className="w-full border border-gray-300 rounded-md px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
                         value={formData.phone}
