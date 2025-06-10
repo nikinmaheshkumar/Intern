@@ -1,8 +1,9 @@
+import Form from "../components/Forms";
 function Login()
 {
     return (
         <>
-        <h1>Login</h1>
+        <Form route="/api/token/" method="login" />
         </>
     );
 }
